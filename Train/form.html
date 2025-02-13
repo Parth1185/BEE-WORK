@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC Ticket Booking</title>
+</head>
+<style>
+    body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f3;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+fieldset {
+    border: 2px solid #0078d7;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.move {
+    width: 100%;
+    height: 110px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+legend {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #0078d7;
+    padding: 0 10px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #444;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.gender-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.gender {
+    display: flex;
+    gap: 8px;
+}
+
+.gender-group label {
+    margin-right: 15px;
+    font-weight: normal;
+    color: #555;
+}
+
+input[type="submit"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 30px;
+    background-color: #0078d7;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #005bb5;
+    transform: translateY(-2px);
+}
+
+#image {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+}
+
+#hd {
+    color: black;
+    font-size: 45px;
+}
+
+@media (max-width: 768px) {
+    fieldset {
+        padding: 15px;
+    }
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    display: none;
+    z-index: 1;
+}
+
+.highlighted {
+    background-color: #d3d3d3;
+    color: black;
+}
+
+.search-dropdown div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.search-dropdown div:hover {
+    background-color: #f0f0f0;
+}
+
+.search-dropdown.show {
+    display: block;
+}
+
+@media screen and (max-width: 576px) {
+    fieldset {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        width: auto;
+    }
+
+    .gender {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input,
+    select {
+        width: 100%;
+    }
+
+    #hd {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (min-width: 577px) and (max-width: 768px) {
+    fieldset {
+        max-width: 90%;
+    }
+
+    label {
+        width: 150px;
+    }
+
+    .gender {
+        gap: 15px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    fieldset {
+        max-width: 800px;
+    }
+
+    label {
+        width: 200px;
+    }
+
+    input,
+    select {
+        max-width: 400px;
+    }
+}
+
+</style>
+<body>
+    <div class="main">
+        <img src="train.png" alt="" id="image">
+    </div>
+
+    <div class="move">
+        <marquee>
+            <h1 id="hd">WELCOME TO INDIAN RAILWAYS</h1>
+        </marquee>
+    </div>
+
+    <br> <br>
+    <fieldset>
+       <center> <h2>Personal Details : </center></h2>
+        <form action="" method="">
+            <label for="fname">First Name:</label>
+            <input type="text" name="fname" placeholder="Enter Name" required>
+            <label for="lname"> Last Name:</label>
+            <input type="text" placeholder="Enter Last Name" required>
+            <label for="contno">Contact No:</label>
+            <input type="number" placeholder="Enter Mobile Number" required>
+            <br>
+
+            <label for="gender">Gender:</label>
+            <div class="gender">
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="others">Others</label>
+            </div>
+            <br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter Age" min="0" required>
+            <br><br>
+    </fieldset>
+    <fieldset>
+        <center><h2>Booking Details : </center></h2>
+        <label for="DOJ">Date of Journey</label>
+        <input type="date" id="date" name="date" required>
+        <br>
+        <div class="search-container">
+            <label for="Origin">From : </label>
+            <input type="text" id="origin" class="search-input" placeholder="Enter source station"
+                oninput="filterStations('origin')" autocomplete="off" />
+            <div id="origin-dropdown" class="search-dropdown"></div>
+        </div>
+
+        <div class="search-container">
+            <label for="Dest"> To : </label>
+            <input type="text" id="destination" class="search-input" placeholder="Enter destination station"
+                oninput="filterStations('destination')" autocomplete="off" />
+            <div id="destination-dropdown" class="search-dropdown"></div>
+        </div>
+
+        <label for="TR">Train :</label>
+        <select name="Train" id="Train" onchange="updateClasses()">
+            <option value="">Choose Train</option>
+            <option value="RJ" data-classes="3A,2A,1A">RAJDHANI EXPRESS</option>
+            <option value="VB" data-classes="CC,EC">VANDE BHARAT EXPRESS</option>
+            <option value="SS" data-classes="3A,2A,1A">SHRI SHAKTI EXPRESS</option>
+            <option value="HS" data-classes="3A">HUMSAFAR EXPRESS</option>
+            <option value="SE" data-classes="CC,EC">SHATABDI EXPRESS</option>
+            <option value="DE" data-classes="SL,3A,2A,1A">DURONTO EXPRESS</option>
+            <option value="SC" data-classes="SL,3A,2A">SACHKHAND EXPRESS</option>
+            <option value="GR" data-classes="3A,CC">GARIB RATH EXPRESS</option>
+            <option value="SK" data-classes="SL,3A,2A,1A">SAMPARK KRANTI EXPRESS</option>
+        </select><br>
+
+        <label for="Class">Class :</label>
+        <select name="class" id="Class">
+            <option value="">Choose Class</option>
+        </select>
+
+
+    </fieldset>
+    <center> <input type="Submit" value="Book Ticket"></center>
+
+
+    <script>
+        const stations = [
+    { name: 'MUMBAI CENTRAL', code: 'BCT' },
+    { name: 'NEW DELHI', code: 'NDLS' },
+    { name: 'CHENNAI CENTRAL', code: 'MAS' },
+    { name: 'BANGALORE CITY', code: 'SBC' },
+    { name: 'KOLKATA CHARBAGH', code: 'HWH' },
+    { name: 'HYDERABAD DECCAN', code: 'HYB' },
+    { name: 'PUNE', code: 'PUNE' },
+    { name: 'AHMEDABAD JUNCTION', code: 'ADI' },
+    { name: 'JAIPUR', code: 'JP' },
+    { name: 'LUCKNOW CHARBAGH', code: 'LKO' },
+    { name: 'BHOPAL JN', code: 'BPL' },
+    { name: 'NAGPUR CENTRAL', code: 'NGP' },
+    { name: 'PATNA', code: 'PNBE' },
+    { name: 'RAJPURA JUNCTION', code: 'RPJ' },
+    { name: 'KANPUR CENTRAL', code: 'CNB' },
+    { name: 'VADODARA', code: 'BRC' },
+    { name: 'SURAT', code: 'ST' },
+    { name: 'INDORE', code: 'INDB' },
+    { name: 'COIMBATORE', code: 'CBE' },
+    { name: 'AMBALA CANTT', code: 'UMB' },
+    { name: 'CHANDIGARH JUNCTION', code: 'CDG' },
+    { name: 'GUWAHATI', code: 'GHY' },
+    { name: 'AGRA CANTT', code: 'AGC' },
+    { name: 'JAMMU TAWI', code: 'JAT' },
+    { name: 'VARANASI', code: 'BSB' },
+    { name: 'SHRI MATA VAISHNO DEVI KATRA', code: 'SVDK' },
+    { name: 'LUDHIANA JUNCTION', code: 'LDH' },
+    { name: 'AMRITSAR JUNCTION', code: 'ASR' },
+];
+let currentSelectionIndex = -1;
+
+function filterStations(type) {
+    const input = document.getElementById(type);
+    const dropdown = document.getElementById(`${type}-dropdown`);
+    const searchTerm = input.value.toLowerCase();
+    dropdown.innerHTML = '';
+    currentSelectionIndex = -1;
+    const filteredStations = stations.filter(
+        (station) =>
+            station.name.toLowerCase().includes(searchTerm) ||
+            station.code.toLowerCase().includes(searchTerm)
+    );
+    filteredStations.forEach((station) => {
+        const div = document.createElement('div');
+        div.textContent = `${station.name} (${station.code})`;
+        div.onclick = () => selectStation(type, station.name);
+        div.classList.add('dropdown-item');
+        dropdown.appendChild(div);
+    });
+    dropdown.classList.toggle('show', filteredStations.length > 0);
+}
+
+function selectStation(type, station) {
+    const input = document.getElementById(type);
+    input.value = station;
+    document.getElementById(`${type}-dropdown`).classList.remove('show');
+    validateStationsImmediately();
+}
+
+function validateStationsImmediately() {
+    const origin = document.getElementById('origin').value;
+    const destination = document.getElementById('destination').value;
+    if (origin && destination && origin === destination) {
+        alert('Origin and Destination cannot be the same. Please select different stations.');
+        document.getElementById('destination').value = '';
+    }
+}
+
+function navigateDropdown(e, type) {
+    const dropdown = document.getElementById(`${type}-dropdown`);
+    const items = dropdown.querySelectorAll('.dropdown-item');
+    if (items.length === 0) return;
+    if (e.key === 'ArrowDown') {
+        if (currentSelectionIndex < items.length - 1) {
+            currentSelectionIndex++;
+        }
+    } else if (e.key === 'ArrowUp') {
+        if (currentSelectionIndex > 0) {
+            currentSelectionIndex--;
+        }
+    } else if (e.key === 'Enter') {
+        if (currentSelectionIndex !== -1) {
+            selectStation(type, items[currentSelectionIndex].textContent.split(' (')[0]);
+            e.preventDefault();
+        }
+    }
+    items.forEach((item, index) => {
+        if (index === currentSelectionIndex) {
+            item.classList.add('highlighted');
+        } else {
+            item.classList.remove('highlighted');
+        }
+    });
+}
+
+function setMinDate() {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    document.getElementById('date').setAttribute('min', `${yyyy}-${mm}-${dd}`);
+}
+
+function updateClasses() {
+    const trainSelect = document.getElementById('Train');
+    const classSelect = document.getElementById('Class');
+    classSelect.innerHTML = '<option value="">Choose Class</option>';
+    const selectedTrain = trainSelect.options[trainSelect.selectedIndex];
+    const classes = selectedTrain.getAttribute('data-classes');
+    if (classes) {
+        classes.split(',').forEach((trainClass) => {
+            const option = document.createElement('option');
+            option.value = trainClass;
+            option.textContent = trainClass;
+            classSelect.appendChild(option);
+        });
+    }
+}
+
+document.getElementById('Train').addEventListener('change', updateClasses);
+document.getElementById('origin').addEventListener('input', () => filterStations('origin'));
+document.getElementById('destination').addEventListener('input', () => filterStations('destination'));
+document.addEventListener('keydown', (e) => {
+    if (e.target.classList.contains('search-input')) {
+        navigateDropdown(e, e.target.id);
+    }
+});
+
+document.addEventListener('click', (e) => {
+    document.querySelectorAll('.search-dropdown').forEach((dropdown) => {
+        if (!dropdown.parentElement.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+});
+
+window.onload = setMinDate;
+
+    </script>
+
+</body>
+
+</html>

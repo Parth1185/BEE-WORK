@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC Ticket Booking</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <div class="main">
+        <img src="train.png" alt="Train Image" id="image">
+    </div>
+
+    <div class="move">
+        <marquee>
+            <h1 id="hd">WELCOME TO INDIAN RAILWAYS</h1>
+        </marquee>
+    </div>
+
+    <br> <br>
+    <fieldset>
+        <h2>Personal Details</h2>
+        <form action="" method="">
+            <label for="fname">First Name:</label>
+            <input type="text" name="fname" placeholder="Enter Name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="lname"> Last Name:</label>
+            <input type="text" placeholder="Enter Last Name">
+    
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter Age" min="0" max="120">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="contno">Contact No:</label>
+            <input type="number" placeholder="Enter Mobile Number">
+    
+            <label for="gender">Gender:</label>
+            <div class="gender">
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Others</label>
+            </div>
+    
+            <br><br>
+        </form>
+    </fieldset>
+    
+    <fieldset>
+        <h2>Booking Details</h2>
+
+        <label for="DOJ">Date of Journey :</label>
+        <input type="date" id="date" name="date" required>
+        <small id="date-error" style="color: red; display: none;">Please select today or a future date.</small>
+
+        
+        <div class="search-container">
+            <label for="Origin">From : </label>
+            <input type="text" id="origin" class="search-input" placeholder="Enter source station or code"
+            oninput="filterStations('origin')" autocomplete="off" />
+            <div id="origin-dropdown" class="search-dropdown"></div>
+            <input type="hidden" id="origin-code" name="origin-code">
+        
+
+        <div class="search-container">
+            <label for="Dest"> To : </label>
+            <input type="text" id="destination" class="search-input" placeholder="Enter destination station or code"
+            oninput="filterStations('destination')" autocomplete="off" />
+            <div id="destination-dropdown" class="search-dropdown"></div>
+            <input type="hidden" id="destination-code" name="destination-code">
+        </div>
+
+        <label for="TR">Train :</label>
+        <select name="Train" id="Train" onchange="updateClasses()">
+            <option value="">Choose Train</option>
+            <option value="RJ" data-classes="3A,2A,1A">RAJDHANI EXPRESS</option>
+            <option value="VB" data-classes="CC,EC">VANDE BHARAT EXPRESS</option>
+            <option value="SS" data-classes="3A,2A,1A">SHRI SHAKTI EXPRESS</option>
+            <option value="HS" data-classes="3A">HUMSAFAR EXPRESS</option>
+            <option value="SE" data-classes="CC,EC">SHATABDI EXPRESS</option>
+            <option value="DE" data-classes="SL,3A,2A,1A">DURONTO EXPRESS</option>
+            <option value="SC" data-classes="SL,3A,2A">SACHKHAND EXPRESS</option>
+            <option value="GR" data-classes="3A,CC">GARIB RATH EXPRESS</option>
+            <option value="SK" data-classes="SL,3A,2A,1A">SAMPARK KRANTI EXPRESS</option>
+        </select><br>
+
+        <label for="Class">Class :</label>
+        <select name="class" id="Class">
+            <option value="">Choose Class</option>
+        </select>
+    </fieldset>
+    <center> <input type="Submit" value="Book Ticket"></center>
+
+    <script src="form.js"></script>
+</body>
+
+</html>
