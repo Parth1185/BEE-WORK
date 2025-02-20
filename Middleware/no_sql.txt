@@ -1,0 +1,26 @@
+schema less database
+no need to define any structure/schema
+
+no relation between multiple tables, no relational database
+example of nosql: MongoDB, redis, dynamodb
+sql: MySQL, postgres
+
+
+
+
+                **MongoDB**
+1. Collections:  there are different collections, data is added in collections , just like tables in SQL data is added in tables
+2. Documents: an object which has key-value pair and this document is added in collections, it is a record
+3. Mongo Shell: it is a command line interface ti interact with mongodb database... data added through command line in MySQL, but for adding data through command in MongoDB
+it is opened through a command "mongosh"
+
+MongoDB command
+
+1. show db  : shows all the database list
+2. use `db_name` : switch to a particular database, if not created, it will create a new db and switch to it
+3. show collections : shows all collections
+                ------  insertOne
+4. insert   ---|
+                ------  insertMany
+
+                db.collection_name.insertOne(   )   //if not created, it will create a new collection and add data
