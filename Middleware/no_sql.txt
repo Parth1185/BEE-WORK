@@ -24,3 +24,16 @@ MongoDB command
                 ------  insertMany
 
                 db.collection_name.insertOne(   )   //if not created, it will create a new collection and add data
+
+
+commands
+db.users.find()
+ db.users.find({name:"Sakshi"})
+ db.users.find({age:{$gt:19}})   greater than filter
+ db.users.find({age:{$lt:19}})   less than filter
+
+
+ return type of find is array while for findOne it is object or document
+
+ db.users.remove({age:19})
+ db.users.deleteOne({name:"Sakshi"})                
