@@ -1,0 +1,262 @@
+schema less database
+no need to define any structure/schema
+
+no relation between multiple tables, no relational database
+example of nosql: MongoDB, redis, dynamodb
+sql: MySQL, postgres
+
+
+
+
+                **MongoDB**
+1. Collections:  there are different collections, data is added in collections , just like tables in SQL data is added in tables
+2. Documents: an object which has key-value pair and this document is added in collections, it is a record
+3. Mongo Shell: it is a command line interface to interact with mongodb database... data added through command line in MySQL, but for adding data through command in MongoDB
+it is opened through a command "mongosh"
+
+MongoDB command
+
+1. show dbs  : shows all the database list
+2. use `db_name` : switch to a particular database, if not created, it will create a new db and switch to it
+3. show collections : shows all collections
+                ------  insertOne
+4. insert   ---|
+                ------  insertMany
+
+                db.collection_name.insertOne(   )   //if not created, it will create a new collection and add data
+
+
+commands
+db.users.find()
+ db.users.find({name:"Parth"})
+ db.users.find({age:{$gt:19}})   greater than filter
+ db.users.find({age:{$lt:19}})   less than filter
+
+
+ return type of find is array while for findOne it is object or document
+
+ db.users.remove({age:19})
+ db.users.deleteOne({name:"Parth"})                
+
+5. update --->  updateOne(), updateMany(), replaceOne()
+example : 
+    db.users.updateOne({_id:ObjectId('67b7342ca01de8613b79a1b8')},{$set:{age:19}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+
+PS D:\BEE> mongosh
+Current Mongosh Log ID: 67c06584dd68dce6f179a1b5
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.6
+Using MongoDB:          8.0.4
+Using Mongosh:          2.3.6
+mongosh 2.3.9 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-27T17:39:38.051+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show db
+MongoshInvalidInputError: [COMMON-10001] 'db' is not a valid argument for "show".
+test> show dbs
+admin    40.00 KiB
+config   48.00 KiB
+g13_db   72.00 KiB
+local   128.00 KiB
+test> show collections
+
+test> show collection
+MongoshInvalidInputError: [COMMON-10001] 'collection' is not a valid argument for "show".
+test> use g13_db
+switched to db g13_db
+g13_db> show collections
+users
+g13_db> desc users
+Uncaught:
+SyntaxError: Missing semicolon. (1:4)
+
+> 1 | desc users
+    |     ^
+  2 |
+
+g13_db> db.users.find({name:"Parth"})
+
+g13_db> db.users.find({name:"Parth Bhandari"})
+[
+  {
+    _id: ObjectId('67b7342ca01de8613b79a1b8'),
+    name: 'Parth Bhandari',
+    age: '19',
+    address: 'Ludhiana'
+  }
+]
+g13_db> db.users.updateOne({_id:ObjectId('67b7342ca01de8613b79a1b8')}.{$set:{age:}})
+Uncaught:
+SyntaxError: Unexpected token (1:62)
+
+> 1 | db.users.updateOne({_id:ObjectId('67b7342ca01de8613b79a1b8')}.{$set:{age:}})
+    |                                                               ^
+  2 |
+
+g13_db> db.users.updateOne({_id:ObjectId('67b7342ca01de8613b79a1b8')},{$set:{age:}})
+Uncaught:
+SyntaxError: Unexpected token (1:73)
+
+> 1 | db.users.updateOne({_id:ObjectId('67b7342ca01de8613b79a1b8')},{$set:{age:}})
+    |                                                                          ^
+  2 |
+
+g13_db> db.users.updateOne({_id:ObjectId('67b7342ca01de8613b79a1b8')},{$set:{age:19}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+g13_db> db.users.find();
+[
+  { _id: ObjectId('67b7333ea01de8613b79a1b6'), Name: 'Parth' },
+  {
+    _id: ObjectId('67b7338da01de8613b79a1b7'),
+    Name: 'Kartik',
+    age: 19
+  },
+  {
+    _id: ObjectId('67b7342ca01de8613b79a1b8'),
+    name: 'Parth Bhandari',
+    age: 19,
+    address: 'Ludhiana'
+  },
+  { _id: ObjectId('67b7346ba01de8613b79a1b9') }
+]
+g13_db> db.users.find({name:"Kartik");
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:28)
+
+> 1 | db.users.find({name:"Kartik");
+    |                             ^
+  2 |
+
+g13_db> db.users.find({name:"Kartik"});
+
+g13_db> db.users.updateOne({_id:ObjectId('67b7342ca01de8613b79a1b8')},{$set:{age:20}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+g13_db> db.users.find();
+[
+  { _id: ObjectId('67b7333ea01de8613b79a1b6'), Name: 'Parth' },
+  {
+    _id: ObjectId('67b7338da01de8613b79a1b7'),
+    Name: 'Kartik',
+    age: 19
+  },
+  {
+    _id: ObjectId('67b7342ca01de8613b79a1b8'),
+    name: 'Parth Bhandari',
+    age: 20,
+    address: 'Ludhiana'
+  },
+  { _id: ObjectId('67b7346ba01de8613b79a1b9') }
+]
+g13_db> db.users.find({name:'Kartik'});
+
+g13_db> db.users.find({Name:'Kartik'});
+[
+  {
+    _id: ObjectId('67b7338da01de8613b79a1b7'),
+    Name: 'Kartik',
+    age: 19
+  }
+]
+g13_db> db.users.find({Name:'Kartk'});
+
+g13_db> db.users.find({Name:'Kartik'});
+[
+  {
+    _id: ObjectId('67b7338da01de8613b79a1b7'),
+    Name: 'Kartik',
+    age: 19
+  }
+]
+
+    delete command also
+
+
+what is nodejs
+asynchronous and synchronous how it handles
+blocking, non blocking code
+express,
+ get, post requst
+query parameter, params
+express.urlencoded, express.json
+content type
+all mongodb commands
+match,
+                                    3 Stages
+AGGREGRATION PIPELINE :       I         II        III    
+stage multiple operations ($match)-->($group)-->($sort)-->Output
+
+Syntax:
+  db.users.aggregate([
+    {
+Stage1
+    },
+    {
+Stage2
+    },
+    {
+Stage3
+    }
+  ])
+
+//order collections
+total order value of cheese pizza
+
+1. $match : filter out those document which matches the condition
+
+g13_db> db.orders.aggregate([{$match:{name:"Cheese"}}])
+
+2. $project : will return those key value which are required
+g13_db> db.orders.aggregate([{$match:{name:"Cheese"}},{$project:{_id:0,name:1,price:1}}])
+g13_db> db.orders.aggregate([{$match:{name:"Cheese"}},{$project:{name:1,price:1}}])
+
+3. $group : 
+
+g13_db> db.orders.aggregate([{$group:{_id:"$name"}}])
+[ { _id: 'Vegan' }, { _id: 'Pepperoni' }, { _id: 'Cheese' } ]
+
+g13_db> db.orders.aggregate([{$group:{_id:"$name"}}])
+[ { _id: 'Vegan' }, { _id: 'Pepperoni' }, { _id: 'Cheese' } ]
+g13_db> db.orders.aggregate([{$group: { _id: "$name", totalQuantity: { $sum: "$quantity" } }}])
+[
+  { _id: 'Vegan', totalQuantity: 20 },
+  { _id: 'Pepperoni', totalQuantity: 60 },
+  { _id: 'Cheese', totalQuantity: 75 }
+]
+g13_db> db.orders.aggregate([{$group: { _id: "$name", totalPrice: { $sum: "$price" } }}])
+[
+  { _id: 'Vegan', totalPrice: 35 },
+  { _id: 'Cheese', totalPrice: 39 },
+  { _id: 'Pepperoni', totalPrice: 60 }
+]
+
+g13_db> db.orders.aggregate([{$group: { _id: "$name", totalCount: { $sum: 1 } }}])
+[
+  { _id: 'Vegan', totalCount: 2 },
+  { _id: 'Pepperoni', totalCount: 3 },
+  { _id: 'Cheese', totalCount: 3 }
+]
