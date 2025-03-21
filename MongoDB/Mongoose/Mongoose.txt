@@ -1,8 +1,11 @@
 Mongoose is an ODM : Object Document Mapper, it maps classes with ___
-
+connects server
 1. Schema -> structure
 2. Model: creates a class of the schema, which give various functions of Mongoose
 
     //HW
     create blog schema with property title, content, author, date
     create a route /blogs to add blog data into database
+
+
+    What is restful api, follows rest architecture, resource based
