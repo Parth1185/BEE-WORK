@@ -9,3 +9,13 @@ connects server
 
 
     What is restful api, follows rest architecture, resource based
+    API: Application Programming Interface
+REST architecture: resource based architecture
+1. all the routes for performing CRUD operations on data on server, they need to follow httpverb (GET POST DELETE PUT PATCH)
+    GET : READ, POST : ADD, DELETE : DELETE, PUT : UPDATE, PATCH : UPDATE
+
+
+    .put --> id
+             data
+ (4 steps)   blog : find by id and update with calue
+             save
