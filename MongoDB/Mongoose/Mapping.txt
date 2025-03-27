@@ -1,0 +1,7 @@
+        MAPPING
+
+one to one: driver-license
+
+one to many: user-blogs
+
+many to many : Students-courses
