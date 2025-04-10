@@ -1,0 +1,5 @@
+2 types of rendering
+CSR & SSR
+Client Side Rendering
+Server Side Rendering : Server renders the data and info on server itself
+res.render
